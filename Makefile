@@ -1,24 +1,37 @@
 NAME = cub3d
-SRCS = $(shell find . -path $(MLX_DIR) -prune -o \
-					  -path $(LIB_DIR) -prune -o \
-					  -type f -name "*.c" -print)
-
-OBJS = $(SRCS:.c=.o)
-# 상대경로일 경우, make가 변환을 제대로 처리해주지 못한다.
+SRC = 	get_next_line.c			\
+		error.c				\
+		gnl_info.c				\
+		is_id.c				\
+		line.c					\
+		line2.c				\
+		ft_add_to_buffer.c	\
+		ft_endswith.c			\
+		ft_trim.c				\
+		vector.c				\
+		color.c						\
+		events.c					\
+		main.c						\
+		map_check.c					\
+		map_parse.c					\
+		map_save.c					\
+		nonmap_parse.c				\
+		nonmap_save.c				\
+		parse.c						\
+		render.c					\
+		start.c						
+SRCS = $(addprefix $(SRC_DIR)/, $(SRC))
+OBJS = $(addprefix $(OBJ_DIR),$(SRC:.c=.o))
 DEPS = $(SRCS:.c=.d)
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-LIB_DIR = ./utils/libft
-MLX_DIR = ./mlx
-# MLX_DIR = ./mlx_cs
-INC = ./includes
+SRC_DIR = ./srcs
+LIB_DIR = libft
+MLX_DIR = mlx
+INC = ./includes/
 TAGS = -framework OpenGL -framework AppKit -fsanitize=address 
-# TAGS =  -lmlx -lXext -lX11 -fsanitize=address -lm -lmlx
 
 all: $(NAME)
-
-$(DEP_DIR):
-	mkdir -p $(DEP_DIR)
 
 $(NAME): $(OBJS)
 	make -C $(LIB_DIR)
@@ -28,16 +41,17 @@ $(NAME): $(OBJS)
 
 -include $(DEPS)
 
-%.o: %.c $(SRCS)
-	$(CC) $(CFLAGS) -c $< -I$(MLX_DIR) -I$(INC) -o $@
+%.o: %.c
+	$(CC) $(CFLAGS) -I$(MLX_DIR) -I$(INC) -c $< -o $@
 
-$(DEP_DIR)%.d: %.c
-	$(CC) -MMD -c $< -I$(MLX_DIR) -I$(INC) -MF $@
+%.d: %.c
+	$(CC) -MMD -I$(MLX_DIR) -I$(INC) -c $< -MF $@
 
 clean:
 	make clean -C $(LIB_DIR)
 	make clean -C $(MLX_DIR)
-	rm -f $(OBJS) $(DEPS)
+	rm -f $(OBJS)
+	rm -f $(DEPS)
 
 fclean:
 	make fclean -C $(LIB_DIR)

@@ -4,7 +4,7 @@ OBJS = $(SRCS:.c=.o)
 NAME = libft.a
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-INC = ../../includes
+INC = ../includes
 
 all: $(NAME)
 
