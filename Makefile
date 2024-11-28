@@ -12,7 +12,6 @@ SRC = 	get_next_line.c			\
 		color.c						\
 		events.c					\
 		main.c						\
-		map_check.c					\
 		map_parse.c					\
 		map_save.c					\
 		nonmap_parse.c				\
@@ -34,7 +33,6 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	make -C $(LIB_DIR)
-	echo $(DEPS)
 	$(CC) $^ -L$(LIB_DIR) -lft -lmlx -o $@ $(TAGS)
 
 -include $(DEPS)
