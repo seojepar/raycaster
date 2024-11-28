@@ -26,7 +26,7 @@ void	parse(t_info *cub, char *in)
 
 	line.fd = open(in, O_RDONLY);
 	parse_nonmap(cub, &line);
-	if (cub->mask != ((1 << 7) - 1))
+	if (cub->mask != ((1 << 6) - 1))
 		xerr("missing id information on file");
 	if (parse_map(cub, &line))
 		exit_p(cub, &line);
