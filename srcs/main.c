@@ -91,6 +91,8 @@ void	init_mlx(t_info *cub)
 	cub->img = mlx_new_image(cub->mlx, SCREEN_W, SCREEN_H);
 	cub->data = mlx_get_data_addr(cub->img, &cub->bpp, \
 	&cub->size_line, &cub->endian);
+	cub->pos.x += 0.5;
+	cub->pos.y += 0.5;
 }
 
 int	main(int ac, char *av[])

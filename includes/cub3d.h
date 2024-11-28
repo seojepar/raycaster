@@ -6,7 +6,7 @@
 /*   By: seojepar <seojepar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 22:41:09 by seojeongpar       #+#    #+#             */
-/*   Updated: 2024/11/28 16:16:33 by seojepar         ###   ########.fr       */
+/*   Updated: 2024/11/28 16:29:32 by seojepar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@
 # define KEY_D		2
 # define KEY_ESC		53
 # define ON_DESTROY	17
-# define WALK 0.2
+# define WALK 0.26
 # define ON_KEYDOWN	2
 # define ON_KEYUP	3
 
