@@ -78,6 +78,9 @@ int	save_id_data(t_info *cub, t_line *line)
 	int	ret;
 
 	id = line->id;
+	if (cub->mask & (1 << id))
+		return (xerr("duplicate id information on file"));
+	cub->mask |= (1 << id);
 	if (is_texture_id(id))
 	{
 		if (check_xpm_filename(line->it))
