@@ -6,7 +6,7 @@
 /*   By: seojepar <seojepar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 20:12:09 by seojepar          #+#    #+#             */
-/*   Updated: 2024/11/28 14:51:12 by seojepar         ###   ########.fr       */
+/*   Updated: 2024/11/28 15:05:10 by seojepar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,5 +71,6 @@ void	init_start_map(t_line *line);
 int		check_map_line(t_line *line);
 int		is_texture_id(int id);
 int		is_color_id(int id);
+int		xerr(char *str);
 
 #endif

@@ -37,12 +37,12 @@ static int	save_color(t_info *cub, t_line *line)
 	unsigned int	g;
 	unsigned int	b;
 
-	if (!is_valid_color_str(line->it))
+	if (is_valid_color_str(line->it))
 		return (1);
 	if (get_color(line, &r) || get_color(line, &g) || get_color(line, &b))
 		return (xerr("color is not in range"));
 	else
-	{	
+	{
 		*((unsigned int *)cub->fill[line->id]) = (r << 16) + (g << 8) + b;
 		return (0);
 	}

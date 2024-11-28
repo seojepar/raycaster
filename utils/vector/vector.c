@@ -50,12 +50,10 @@ double	abs_d(double d)
 t_vec	mult_vv(t_vec y, t_vec key)
 {
 	t_vec	x;
-	t_vec	unit;
 	t_vec	ret;
 
 	x = rot_v(M_PI_2, y);
-	unit = add_v(x, y);
-	ret.x = unit.x * key.x;
-	ret.y = unit.y * key.y;
+	ret.x = x.x * key.x + y.x * key.y;
+	ret.y = x.y * key.x + y.y * key.y;
 	return (ret);
 }

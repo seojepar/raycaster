@@ -60,7 +60,10 @@ void	draw_line(t_text *text, t_draw *line, t_info *cub, int side)
 	while (++py < SCREEN_H)
 	{
 		if (py < line->start_pixel)
+		{
 			c = *((unsigned int *)cub->fill[C]);
+			put_color_to_pixel(cub, px, py, c);
+		}
 		else if (py <= line->end_pixel)
 		{
 			text->y = ((int)text->pos) % text->h;
@@ -70,7 +73,9 @@ void	draw_line(t_text *text, t_draw *line, t_info *cub, int side)
 				c = (c >> 1) & 8355711;
 		}
 		else
+		{
 			c = *((unsigned int *)cub->fill[F]);
-		put_color_to_pixel(cub, px, py, c);
+			put_color_to_pixel(cub, px, py, c);
+		}
 	}
 }
