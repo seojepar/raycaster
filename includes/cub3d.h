@@ -6,7 +6,7 @@
 /*   By: seojepar <seojepar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 22:41:09 by seojeongpar       #+#    #+#             */
-/*   Updated: 2024/11/28 12:10:22 by seojepar         ###   ########.fr       */
+/*   Updated: 2024/11/28 13:54:34 by seojepar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <stdio.h>
 # include <unistd.h>
 # include <fcntl.h>
+# include <sys/time.h>
 # include "mlx.h"
 # include "line.h"
 # include "utils.h"
@@ -35,7 +36,7 @@
 #define KEY_D		2
 #define KEY_ESC		53
 #define ON_DESTROY	17
-#define WALK 0.1
+#define WALK 0.2
 #define ON_KEYDOWN	2
 #define ON_KEYUP	3
 
@@ -135,22 +136,42 @@ typedef struct s_info{
 	t_vec	pos; //x and y start position
 	t_vec	dir; //initial direction vector
 	double	time;
-	double	old_time;
+	int		keyonoff;
+	// double	key_dn_time[128]; // WASD왼오
 	void	*fill[ID_NUM];
 }				t_info;
 
 
+// 애매하다. 걸을 때 1픽셀이라서 초기값 그대로 넣으면 안될텐데
 /* parse */
 void	parse(t_info *cub, char *in);
 int parse_map(t_info *cub, t_line *line);
+
+
+/* nonmap_parse.c */
+
+
+// open, close, read, write,
+// printf, malloc, free, perror,
+// strerror, exit, gettimeofday
+
 int	save_map(t_info *cub, t_line *line);
+
+
 int	init_map(t_info *cub);
+
 int check_map(t_info cub);
+
 int render(t_info *cub);
 unsigned int    get_color_from_text(t_text *text);
 void	put_color_to_pixel(t_info *cub, int x, int y, unsigned int color);
+
 void    events(t_info *cub);
+
 int	free_cub(t_info *cub);
+
+
+
 /* parse_nonmap.c */
 int	parse_nonmap(t_info *cub, t_line *line);
 

@@ -6,13 +6,13 @@
 /*   By: seojepar <seojepar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 20:06:58 by seojepar          #+#    #+#             */
-/*   Updated: 2024/11/27 15:32:36 by seojepar         ###   ########.fr       */
+/*   Updated: 2024/11/28 13:46:34 by seojepar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-const t_vec	g_nesw[5] = {{0, -1}, {1, 0}, {0, 1}, {-1, 0}};
+const t_vec	g_nesw[5] = {{0, -1}, {+1, 0}, {0, +1}, {-1, 0}};
 
 int	init_map(t_info *cub)
 {

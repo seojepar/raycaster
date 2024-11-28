@@ -6,7 +6,7 @@
 /*   By: seojepar <seojepar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 12:21:14 by seojepar          #+#    #+#             */
-/*   Updated: 2024/11/26 15:02:20 by seojepar         ###   ########.fr       */
+/*   Updated: 2024/11/28 13:55:07 by seojepar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,17 @@ double	abs_d(double d)
 		return (d);
 	else
 		return (-1.0f * d);
+}
+
+t_vec	mult_vv(t_vec y, t_vec key)
+{
+	t_vec	x;
+	t_vec	unit;
+	t_vec	ret;
+
+	x = rot_v(M_PI_2, y);
+	unit = add_v(x, y);
+	ret.x = unit.x * key.x;
+	ret.y = unit.y * key.y;
+	return (ret);
 }

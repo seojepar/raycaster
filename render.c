@@ -6,7 +6,7 @@
 /*   By: seojepar <seojepar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 15:25:54 by seojepar          #+#    #+#             */
-/*   Updated: 2024/11/28 12:08:12 by seojepar         ###   ########.fr       */
+/*   Updated: 2024/11/28 13:00:24 by seojepar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ static void	loop_init(t_info * cub, t_ray * const ray)
 	ray->raydir.y = ray->dir.y + ray->cplane.y * cplanex;
 	ray->deltadistx = abs_d(1.0f / ray->raydir.x);
 	ray->deltadisty = abs_d(1.0f / ray->raydir.y);
+	// printf("dx: %f, dy: %f\n",ray->deltadistx, ray->deltadisty);
 	ray->hit = 0;
 	ray->stepx = 1;
 	ray->stepy = 1;
@@ -66,11 +67,10 @@ void	hit_ray(int **map, t_ray *r)
 		if (map[r->mapy][r->mapx] == WALL)
 			r->hit = 1;
 	}
-	printf("%d\n", r->side);
-	if(X_SIDE(r->side))
-		r->perpwalldist = (double)(r->sidedistx - r->deltadistx);
+	if (X_SIDE(r->side))
+		r->perpwalldist = (double)((double)r->sidedistx - (double)r->deltadistx);
 	else
-		r->perpwalldist = (double)(r->sidedisty - r->deltadisty);
+		r->perpwalldist = (double)((double)r->sidedisty - (double)r->deltadisty);
 }
 
 // 변형이 없어도 구조체는 포인터로 넘기는게 이득
@@ -137,11 +137,6 @@ void	measure_line(t_info *cub, t_ray *ray, t_draw *line)
 }
 void	pre_loop_init(t_info *cub, t_ray *ray)
 {
-	cub->win = mlx_new_window(cub->mlx, SCREEN_W, SCREEN_H, "cub3d");
-	cub->img = mlx_new_image(cub->mlx, SCREEN_W, SCREEN_H);
-	cub->data = mlx_get_data_addr(cub->img, &cub->bpp, &cub->size_line, &cub->endian);
-	cub->time = 0;
-	cub->old_time = 0;
 	ray->dir = cub->dir;
 	// plane: dir을 반시계 90도 회전
 	ray->cplane = mult_v(0.66, rot_v(M_PI_2, ray->dir));
@@ -152,12 +147,32 @@ void	pre_loop_init(t_info *cub, t_ray *ray)
 	ray->x = 0;
 }
 
+// void	print_map(t_info *cub)
+// {
+// 	int	x;
+// 	int	y;
+
+// 	y = 0;
+// 	while (y < cub->h)
+// 	{
+// 		x = 0;
+// 		while (x < cub->w)
+// 		{
+// 			printf("%3d",cub->map[y][x]);
+// 			x++;
+// 		}
+// 		printf("\n");
+// 		y++;
+// 	}
+// }
+
 int render(t_info *cub)
 {
 	t_ray		ray;
 	t_draw		line;
 
 	pre_loop_init(cub, &ray);
+	// print_map(cub);
 	while(ray.x < SCREEN_W)
 	{
 		loop_init(cub, &ray);

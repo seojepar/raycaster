@@ -6,11 +6,19 @@
 /*   By: seojepar <seojepar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 19:52:25 by seojepar          #+#    #+#             */
-/*   Updated: 2024/11/28 12:07:17 by seojepar         ###   ########.fr       */
+/*   Updated: 2024/11/28 12:17:39 by seojepar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+
+
+// static int	set_errno(int errnum)
+// {
+// 	errno = errnum;
+// 	return (1);
+// }
 
 int is_valid_color_str(char *str)
 {
