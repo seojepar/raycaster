@@ -12,6 +12,52 @@
 
 #include "cub3d.h"
 
+const int	g_dx[8] = {1, 1, 1, 0, -1, -1, -1, 0};
+const int	g_dy[8] = {-1, 0, 1, 1, 1, 0, -1, -1};
+
+int	bfs(t_info *cub, int cx, int cy)
+{
+	int	cmap;
+	int	i;
+
+	cmap = cub->map[cy][cx];
+	if (cmap == WALL || cmap < 0)
+		return (0);
+	else if (cmap == 0)
+		return (ERROR);
+	else
+		cub->map[cy][cx] *= -1;
+	i = 0;
+	while (i < 8)
+	{
+		if (bfs(cub, cx + g_dx[i], cy + g_dy[i]))
+			return (ERROR);
+		i++;
+	}
+	return (0);
+}
+
+int	check_map(t_info cub)
+{
+	int	x;
+	int	y;
+
+	y = 0;
+	while (y < cub.h)
+	{
+		x = 0;
+		while (x < cub.w)
+		{
+			if (cub.map[y][x] == EMPTY && bfs(&cub, x, y))
+				return (xerr("map is not surrounded by wall"));
+			x++;
+		}
+		y++;
+	}
+	printf("Map is valid!\n");
+	return (0);
+}
+
 void	save_map_size(t_info *cub, t_line *line)
 {
 	cub->h = line->h;
@@ -40,7 +86,7 @@ int	parse_map(t_info *cub, t_line *line)
 	if (!is_empty_after_map(line))
 		return (xerr("empty line in middle of map"));
 	if (line->pnum != 1)
-			return (xerr("no player in map"));
+		return (xerr("no player in map"));
 	save_map_size(cub, line);
 	return (0);
 }
