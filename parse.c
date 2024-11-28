@@ -1,0 +1,36 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: seojepar <seojepar@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/18 19:50:35 by seojepar          #+#    #+#             */
+/*   Updated: 2024/11/28 12:07:18 by seojepar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "cub3d.h"
+
+void	exit_p(t_info *cub, t_line *line)
+{
+	free_cub(cub);
+	free(line->in);
+	free(line->buf);
+	exit(1);
+}
+
+void	parse(t_info *cub, char *in)
+{
+	static t_line	line = {0};
+
+	line.fd = open(in, O_RDONLY);
+	if (parse_nonmap(cub, &line))
+		exit_p(cub, &line);
+	if (parse_map(cub, &line))
+		exit_p(cub, &line);
+	save_map(cub, &line);
+	check_map(*cub);
+	free(line.buf);
+	return ;
+}
