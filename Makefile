@@ -1,4 +1,4 @@
-NAME = cub3d
+NAME = cub3D
 SRC = 	get_next_line.c			\
 		error.c				\
 		gnl_info.c				\
@@ -27,7 +27,7 @@ CFLAGS = -Wall -Wextra -Werror
 SRC_DIR = ./srcs
 LIB_DIR = libft
 INC = ./includes/
-TAGS = -framework OpenGL -framework AppKit -fsanitize=address 
+TAGS = -framework OpenGL -framework AppKit
 
 all: $(NAME)
 
