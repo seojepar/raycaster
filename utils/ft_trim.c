@@ -1,54 +1,39 @@
 /* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_trim.c                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: seojepar <seojepar@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/18 18:34:17 by seojepar          #+#    #+#             */
-/*   Updated: 2024/11/18 20:39:44 by seojepar         ###   ########.fr       */
-/*                                                                            */
+/*																			*/
+/*														:::	  ::::::::   */
+/*   ft_trim.c										  :+:	  :+:	:+:   */
+/*													+:+ +:+		 +:+	 */
+/*   By: seojepar <seojepar@student.42.fr>		  +#+  +:+	   +#+		*/
+/*												+#+#+#+#+#+   +#+		   */
+/*   Created: 2024/11/18 18:34:17 by seojepar		  #+#	#+#			 */
+/*   Updated: 2024/11/18 20:39:44 by seojepar		 ###   ########.fr	   */
+/*																			*/
 /* ************************************************************************** */
 
 #include "utils.h"
 
-// 이걸 만들다 보니까 욕심이 난다. 문자열 처리 방법에 있어어서 태초에 저장할 떄, 
-// 어차피 한번 순회하게 되고 이때 길이를 저장해놓는다면 극단적으로 시간이 줄기에..
-// 그래서 구조체를 만들어야 하나 고민이 되지만 일단 지금 당장은 필요 없으니 안할것임.
-
-// gnl:	return (ft_substr(total, ft_strchr(total, '\n') - 1));에서 든 생각
-// 아니 이거 strrchr 도 있으면 겁나 편하겠는데 라는 생각..
-// 왜이리 멍청하게 한거지.. 돌아버리겠네.. 
-
-// 아냐 순방향 순회 1번 만으로 난 이걸 해내겠어
-// _____asdfdsaf__afsd_F__Fadsf__
-//      s                     e
-// 하.. 길이를 저장해놓으면 얼마나 빠르겠냐고.. 진짜 하고싶지만 안할거임. 다 뜯어고쳐야돼서
-// 이거 이분탐색 처럼 절반 짤라서 등등 하면 또 더 빠르게도 가능할듯 ㅋㅋㅋ;; O(N) 이 최선이 아니구나
-// 나름 알고리즘 문제네 ㅋㅋ ;;;;;;;;
-
-char    *ft_trim(char *str)
+char	*ft_trim(char *str)
 {
-    char    *s;
-    char    *e;
-    char    *it;
-    int     was_space;
+	char	*s;
+	char	*e;
+	char	*it;
+	int		was_space;
 
-    it = str;
-    was_space = 1;
-    s = NULL;
-    if (!str || !*str)
-        return (NULL);
-    while (*it)
-    {
-        if (!s && was_space && *it != ' ')
-            s = it;
-        if (!was_space && *it == ' ')
-            e = it - 1;
-        was_space = *it == ' ';
-        it++;
-    }
-    if (!was_space)
-        e = it - 1;
-    return (ft_substr(s, e, 0));
+	it = str;
+	was_space = 1;
+	s = NULL;
+	if (!str || !*str)
+		return (NULL);
+	while (*it)
+	{
+		if (!s && was_space && *it != ' ')
+			s = it;
+		if (!was_space && *it == ' ')
+			e = it - 1;
+		was_space = *it == ' ';
+		it++;
+	}
+	if (!was_space)
+		e = it - 1;
+	return (ft_substr(s, e, 0));
 }

@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vector.h                                           :+:      :+:    :+:   */
+/*   is_id.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seojepar <seojepar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/23 12:14:27 by seojepar          #+#    #+#             */
-/*   Updated: 2024/11/28 14:45:10 by seojepar         ###   ########.fr       */
+/*   Created: 2024/11/28 14:56:30 by seojepar          #+#    #+#             */
+/*   Updated: 2024/11/28 14:56:44 by seojepar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef VECTOR_H
-# define VECTOR_H
-# include <math.h>
+#include "line.h"
 
-typedef struct s_vec{
-	double	x;
-	double	y;
-}				t_vec;
+int	is_texture_id(int id)
+{
+	return (NO <= (id) && (id) <= WE);
+}
 
-t_vec	add_v(t_vec v1, t_vec v2);
-t_vec	mult_v(double scalar, t_vec vector);
-t_vec	rot_v(double angle, t_vec vector);
-double	abs_d(double d);
-t_vec	mult_vv(t_vec a, t_vec b);
-
-#endif
+int	is_color_id(int id)
+{
+	return ((id == F) || (id == C));
+}

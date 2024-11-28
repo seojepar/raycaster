@@ -1,13 +1,13 @@
 /* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   events.c                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: seojepar <seojepar@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/26 15:58:41 by seojepar          #+#    #+#             */
-/*   Updated: 2024/11/28 13:54:05 by seojepar         ###   ########.fr       */
-/*                                                                            */
+/*																			*/
+/*														:::	  ::::::::   */
+/*   events.c										   :+:	  :+:	:+:   */
+/*													+:+ +:+		 +:+	 */
+/*   By: seojepar <seojepar@student.42.fr>		  +#+  +:+	   +#+		*/
+/*												+#+#+#+#+#+   +#+		   */
+/*   Created: 2024/11/26 15:58:41 by seojepar		  #+#	#+#			 */
+/*   Updated: 2024/11/28 13:54:05 by seojepar		 ###   ########.fr	   */
+/*																			*/
 /* ************************************************************************** */
 
 #include "cub3d.h"
@@ -30,7 +30,7 @@ int	keycode_mapper(int key)
 		return (-1);
 }
 
-void get_walk(int mask, t_vec *walk)
+void	get_walk(int mask, t_vec *walk)
 {
 	int	left;
 	int	right;
@@ -89,20 +89,4 @@ int	ft_close(t_info *cub)
 	mlx_destroy_image(cub->mlx, cub->img);
 	free_cub(cub);
 	exit(1);
-}
-
-// int	main_loop(t_info *cub)
-// {
-// 	// if (cub->keyonoff != 0)
-// 	// 	render(cub);
-// 	return (0);
-// }
-
-void    events(t_info *cub)
-{
-	mlx_hook(cub->win, ON_KEYDOWN, 0, key_dn, cub);
-	mlx_hook(cub->win, ON_KEYUP, 0, key_up, cub);
-	mlx_hook(cub->win, ON_DESTROY, 0, ft_close, cub);
-	mlx_loop(cub->mlx);
-	// mlx_loop_hook(cub->win, main_loop, cub);
 }

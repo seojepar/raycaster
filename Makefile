@@ -1,7 +1,6 @@
 NAME = cub3d
 SRCS = $(shell find . -path $(MLX_DIR) -prune -o \
 					  -path $(LIB_DIR) -prune -o \
-					  -path ./subproject -prune -o \
 					  -type f -name "*.c" -print)
 
 OBJS = $(SRCS:.c=.o)

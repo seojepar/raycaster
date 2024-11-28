@@ -1,13 +1,13 @@
 /* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   map_parse.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: seojepar <seojepar@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/18 19:55:20 by seojepar          #+#    #+#             */
-/*   Updated: 2024/11/27 15:23:19 by seojepar         ###   ########.fr       */
-/*                                                                            */
+/*																			*/
+/*														:::	  ::::::::   */
+/*   map_parse.c										:+:	  :+:	:+:   */
+/*													+:+ +:+		 +:+	 */
+/*   By: seojepar <seojepar@student.42.fr>		  +#+  +:+	   +#+		*/
+/*												+#+#+#+#+#+   +#+		   */
+/*   Created: 2024/11/18 19:55:20 by seojepar		  #+#	#+#			 */
+/*   Updated: 2024/11/27 15:23:19 by seojepar		 ###   ########.fr	   */
+/*																			*/
 /* ************************************************************************** */
 
 #include "cub3d.h"
@@ -18,7 +18,7 @@ void	save_map_size(t_info *cub, t_line *line)
 	cub->w = line->e - line->s + 1;
 }
 
-int parse_map(t_info *cub, t_line *line)
+int	parse_map(t_info *cub, t_line *line)
 {
 	int	cnt;
 
@@ -29,7 +29,7 @@ int parse_map(t_info *cub, t_line *line)
 	{
 		jump_blank(line, 1);
 		if (!*line->it)
-			continue;
+			continue ;
 		else
 			line->h = cnt;
 		if (check_map_line(line))
@@ -42,4 +42,3 @@ int parse_map(t_info *cub, t_line *line)
 	save_map_size(cub, line);
 	return (0);
 }
-

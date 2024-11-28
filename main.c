@@ -1,13 +1,13 @@
 /* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: seojepar <seojepar@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/18 14:34:44 by seojepar          #+#    #+#             */
-/*   Updated: 2024/11/28 13:01:00 by seojepar         ###   ########.fr       */
-/*                                                                            */
+/*																			*/
+/*														:::	  ::::::::   */
+/*   main.c											 :+:	  :+:	:+:   */
+/*													+:+ +:+		 +:+	 */
+/*   By: seojepar <seojepar@student.42.fr>		  +#+  +:+	   +#+		*/
+/*												+#+#+#+#+#+   +#+		   */
+/*   Created: 2024/11/18 14:34:44 by seojepar		  #+#	#+#			 */
+/*   Updated: 2024/11/28 13:01:00 by seojepar		 ###   ########.fr	   */
+/*																			*/
 /* ************************************************************************** */
 
 #include "cub3d.h"
@@ -58,14 +58,8 @@ int	free_cub(t_info *cub)
 	free(cub->map);
 	return (0);
 }
-#include <stdlib.h>  // system, atexit 함수를 사용하기 위해 추가.
 
-void	func()
-{
-	system("leaks cub3d");
-}
-
-t_info *init_cub()
+t_info	*init_cub(void)
 {
 	int		id;
 	void	*ptr;
@@ -76,9 +70,9 @@ t_info *init_cub()
 	id = NO;
 	while (id < ID_NUM)
 	{
-		if (IS_TEXTURE_ID(id))
+		if (is_texture_id(id))
 			ptr = malloc(sizeof(t_text));
-		else if (IS_COLOR_ID(id))
+		else if (is_color_id(id))
 			ptr = malloc(sizeof(unsigned int));
 		if (!ptr)
 		{
@@ -95,7 +89,8 @@ void	init_mlx(t_info *cub)
 {
 	cub->win = mlx_new_window(cub->mlx, SCREEN_W, SCREEN_H, "cub3d");
 	cub->img = mlx_new_image(cub->mlx, SCREEN_W, SCREEN_H);
-	cub->data = mlx_get_data_addr(cub->img, &cub->bpp, &cub->size_line, &cub->endian);
+	cub->data = mlx_get_data_addr(cub->img, &cub->bpp, \
+	&cub->size_line, &cub->endian);
 }
 
 int	main(int ac, char *av[])

@@ -1,26 +1,18 @@
 /* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   nonmap_save.c                                      :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: seojepar <seojepar@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/18 19:52:25 by seojepar          #+#    #+#             */
-/*   Updated: 2024/11/28 12:17:39 by seojepar         ###   ########.fr       */
-/*                                                                            */
+/*																			*/
+/*														:::	  ::::::::   */
+/*   nonmap_save.c									  :+:	  :+:	:+:   */
+/*													+:+ +:+		 +:+	 */
+/*   By: seojepar <seojepar@student.42.fr>		  +#+  +:+	   +#+		*/
+/*												+#+#+#+#+#+   +#+		   */
+/*   Created: 2024/11/18 19:52:25 by seojepar		  #+#	#+#			 */
+/*   Updated: 2024/11/28 12:17:39 by seojepar		 ###   ########.fr	   */
+/*																			*/
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-
-
-// static int	set_errno(int errnum)
-// {
-// 	errno = errnum;
-// 	return (1);
-// }
-
-int is_valid_color_str(char *str)
+int	is_valid_color_str(char *str)
 {
 	int	cnt;
 
@@ -29,32 +21,26 @@ int is_valid_color_str(char *str)
 	{
 		if (*str == ',')
 			cnt++;
-		if (!(ft_isdigit(*str) || *str == ' '))
-			return (1); // invalid char
+		else if (!(ft_isdigit(*str) || *str == ' '))
+			return (xerr("forbidden char in rgb field"));
 		str++;
 	}
 	if (cnt != 2)
-		return (1); // comma 개수
+		return (xerr("should be 2 commas in rgb field"));
 	else
 		return (0);
 }
 
-// 오직 0에서 9와 콤마만 허용하는 것으로!
 static int	save_color(t_info *cub, t_line *line)
 {
 	unsigned int	r;
 	unsigned int	g;
 	unsigned int	b;
 
-	// 셍긱 안한 케이스: +, 숫자와 ,가 아닌 문자가 들어오면?
 	if (!is_valid_color_str(line->it))
 		return (1);
-	if (get_color(line, &r))
-		return (ERR_RGB_RANGE);
-	if (get_color(line, &g))
-		return (ERR_RGB_RANGE);
-	if (get_color(line, &b))
-		return (ERR_RGB_RANGE);
+	if (get_color(line, &r) || get_color(line, &g) || get_color(line, &b))
+		return (xerr("color is not in range"));
 	else
 	{	
 		*((unsigned int *)cub->fill[line->id]) = (r << 16) + (g << 8) + b;
@@ -78,7 +64,7 @@ static int	save_texture(t_info *cub, t_line *line)
 	t = cub->fill[line->id];
 	t->img = mlx_xpm_file_to_image(cub->mlx, line->it, &t->w, &t->h);
 	if (!t->img)
-		return (ERR_XPM_CONVERT);
+		return (xerr("xpm to image convert failed"));
 	else
 	{
 		t->data = mlx_get_data_addr(t->img, &t->bpp, &t->size_line, &t->endian);
@@ -92,7 +78,7 @@ int	save_id_data(t_info *cub, t_line *line)
 	int	ret;
 
 	id = line->id;
-	if (IS_TEXTURE_ID(id))
+	if (is_texture_id(id))
 	{
 		if (check_xpm_filename(line->it))
 			return (1);

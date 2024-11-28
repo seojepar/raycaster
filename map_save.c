@@ -1,13 +1,13 @@
 /* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   map_save.c                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: seojepar <seojepar@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/18 20:06:58 by seojepar          #+#    #+#             */
-/*   Updated: 2024/11/28 13:46:34 by seojepar         ###   ########.fr       */
-/*                                                                            */
+/*																			*/
+/*														:::	  ::::::::   */
+/*   map_save.c										 :+:	  :+:	:+:   */
+/*													+:+ +:+		 +:+	 */
+/*   By: seojepar <seojepar@student.42.fr>		  +#+  +:+	   +#+		*/
+/*												+#+#+#+#+#+   +#+		   */
+/*   Created: 2024/11/18 20:06:58 by seojepar		  #+#	#+#			 */
+/*   Updated: 2024/11/28 13:46:34 by seojepar		 ###   ########.fr	   */
+/*																			*/
 /* ************************************************************************** */
 
 #include "cub3d.h"
@@ -61,7 +61,6 @@ int	save_map(t_info *cub, t_line *line)
 	int		x;
 	int		y;
 
-	
 	if (init_map(cub))
 		return (1);
 	str = line->buf + line->s;
@@ -77,7 +76,7 @@ int	save_map(t_info *cub, t_line *line)
 		}
 		y++;
 		if (!*str)
-			break;
+			break ;
 		str = ft_strchr(str, '\n') + line->s + 1;
 	}
 	return (0);

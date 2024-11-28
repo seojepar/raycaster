@@ -6,7 +6,7 @@
 /*   By: seojepar <seojepar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 22:41:09 by seojeongpar       #+#    #+#             */
-/*   Updated: 2024/11/28 13:54:34 by seojepar         ###   ########.fr       */
+/*   Updated: 2024/11/28 14:52:09 by seojepar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,27 +28,23 @@
 # include "vector.h"
 
 /* key val */
-#define KEY_LEFT 	123
-#define KEY_RIGHT	124
-#define KEY_W		13
-#define KEY_A		0
-#define KEY_S		1
-#define KEY_D		2
-#define KEY_ESC		53
-#define ON_DESTROY	17
-#define WALK 0.2
-#define ON_KEYDOWN	2
-#define ON_KEYUP	3
+# define KEY_LEFT 	123
+# define KEY_RIGHT	124
+# define KEY_W		13
+# define KEY_A		0
+# define KEY_S		1
+# define KEY_D		2
+# define KEY_ESC		53
+# define ON_DESTROY	17
+# define WALK 0.2
+# define ON_KEYDOWN	2
+# define ON_KEYUP	3
 
 # define FT_INT_MAX 2147483647
 # define ERROR 1
 
-/* parse_map.c */
-
-
-/* check_map */
-#define WALL ('1' - ' ')
-#define EMPTY ('0' - ' ')
+# define WALL ('1' - ' ')
+# define EMPTY ('0' - ' ')
 
 # define SCREEN_W 1000
 # define SCREEN_H 800
@@ -64,19 +60,10 @@ typedef struct s_text{
 	int		size_line;
 	int		h;
 	int		w;
-	int		x; // 텍스쳐 데이터 상의 x, y (화면이 아님)
+	int		x;
 	int		y;
 	double	pos;
 }				t_text;
-
-
-
-/* parse_info.c */
-#define VALID_CHAR_AFTER_ID(x) ((x != '\0') && (x != ' '))
-
-#define MASK_R(x) ((x >> 16) & 255)
-#define MASK_G(x) ((x >> 8) & 255)
-#define MASK_B(x) ((x) &  255)
 
 /* save map.c */
 enum	e_side {
@@ -85,20 +72,18 @@ enum	e_side {
 	S,
 	W,
 };
-#define X_SIDE(x) ((x) % 2 == 1)
+
 extern const t_vec	g_nesw[5];
 extern const int	g_dx[8];
 extern const int	g_dy[8];
-
-
 extern const int	g_move[4];
 
 typedef struct s_ray{
-	t_vec	pos; //x and y start position
-	t_vec	dir; //initial direction vector
-	t_vec	cplane; //the 2d raycaster version of camera plan
+	t_vec	pos;
+	t_vec	dir;
+	t_vec	cplane;
 	t_vec	raydir;
-	int		x; // cx라고 이름 붙일까 했는데, current x on screen
+	int		x;
 	int		h;
 	int		w;
 	int		mapx;
@@ -110,11 +95,11 @@ typedef struct s_ray{
 	int		stepx;
 	int		stepy;
 	int		hit;
-	int		side; // 홀수면 x, 짝수면 y
+	int		side;
 	double	perpwalldist;
 }	t_ray;
 
-typedef struct	s_draw{
+typedef struct s_draw{
 	int		h;
 	double	wallx;
 	int		start_pixel;
@@ -133,58 +118,48 @@ typedef struct s_info{
 	int		**map;
 	int		h;
 	int		w;
-	t_vec	pos; //x and y start position
-	t_vec	dir; //initial direction vector
+	t_vec	pos;
+	t_vec	dir;
 	double	time;
 	int		keyonoff;
-	// double	key_dn_time[128]; // WASD왼오
 	void	*fill[ID_NUM];
 }				t_info;
 
-
-// 애매하다. 걸을 때 1픽셀이라서 초기값 그대로 넣으면 안될텐데
 /* parse */
-void	parse(t_info *cub, char *in);
-int parse_map(t_info *cub, t_line *line);
-
-
-/* nonmap_parse.c */
-
-
-// open, close, read, write,
-// printf, malloc, free, perror,
-// strerror, exit, gettimeofday
-
-int	save_map(t_info *cub, t_line *line);
-
-
-int	init_map(t_info *cub);
-
-int check_map(t_info cub);
-
-int render(t_info *cub);
-unsigned int    get_color_from_text(t_text *text);
-void	put_color_to_pixel(t_info *cub, int x, int y, unsigned int color);
-
-void    events(t_info *cub);
-
-int	free_cub(t_info *cub);
-
-
+void		parse(t_info *cub, char *in);
+int			parse_map(t_info *cub, t_line *line);
+int			save_map(t_info *cub, t_line *line);
+int			init_map(t_info *cub);
+int			heck_map(t_info cub);
+int			render(t_info *cub);
+void		put_color_to_pixel(t_info *cub, int x, int y, unsigned int color);
+void		events(t_info *cub);
+int			free_cub(t_info *cub);
 
 /* parse_nonmap.c */
-int	parse_nonmap(t_info *cub, t_line *line);
+int			parse_nonmap(t_info *cub, t_line *line);
 
 /* save_id_data.c */
-int	save_id_data(t_info *cub, t_line *line);
+int			save_id_data(t_info *cub, t_line *line);
 
-int	xerr(char *str);
-int	xxerr(const char *msg, const char *filename);
-int	ft_close(t_info *cub);
+int			xerr(char *str);
+int			xxerr(const char *msg, const char *filename);
+int			ft_close(t_info *cub);
 
+/* render */
+void		pre_loop_init(t_info *cub, t_ray *ray);
+void		measure_line(t_info *cub, t_ray *ray, t_draw *line);
+void		draw_line(t_text *text, t_draw *line, t_info *cub, int side);
+void		hit_ray(int **map, t_ray *r);
+void		loop_init(t_info *cub, t_ray *const ray);
 
+/* events */
+int			ft_close(t_info *cub);
+int			key_up(int key, t_info *cub);
+int			key_dn(int key, t_info *cub);
+void		get_walk(int mask, t_vec *walk);
+int			keycode_mapper(int key);
+
+int			check_map(t_info cub);
 
 #endif
-
-
-

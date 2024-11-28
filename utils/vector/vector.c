@@ -1,13 +1,13 @@
 /* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   vector.c                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: seojepar <seojepar@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/23 12:21:14 by seojepar          #+#    #+#             */
-/*   Updated: 2024/11/28 13:55:07 by seojepar         ###   ########.fr       */
-/*                                                                            */
+/*																			*/
+/*														:::	  ::::::::   */
+/*   vector.c										   :+:	  :+:	:+:   */
+/*													+:+ +:+		 +:+	 */
+/*   By: seojepar <seojepar@student.42.fr>		  +#+  +:+	   +#+		*/
+/*												+#+#+#+#+#+   +#+		   */
+/*   Created: 2024/11/23 12:21:14 by seojepar		  #+#	#+#			 */
+/*   Updated: 2024/11/28 13:55:07 by seojepar		 ###   ########.fr	   */
+/*																			*/
 /* ************************************************************************** */
 
 #include "vector.h"
@@ -20,6 +20,7 @@ t_vec	add_v(t_vec v1, t_vec v2)
 	ret.y = v1.y + v2.y;
 	return (ret);
 }
+
 t_vec	mult_v(double scalar, t_vec vector)
 {
 	t_vec	ret;
@@ -28,6 +29,7 @@ t_vec	mult_v(double scalar, t_vec vector)
 	ret.y = vector.y * scalar;
 	return (ret);
 }
+
 t_vec	rot_v(double rad, t_vec vector)
 {
 	t_vec	ret;

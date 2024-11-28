@@ -1,20 +1,20 @@
 /* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: seojepar <seojepar@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/18 16:50:46 by seojepar          #+#    #+#             */
-/*   Updated: 2024/11/19 21:38:02 by seojepar         ###   ########.fr       */
-/*                                                                            */
+/*																			*/
+/*														:::	  ::::::::   */
+/*   ft_strjoin.c									   :+:	  :+:	:+:   */
+/*													+:+ +:+		 +:+	 */
+/*   By: seojepar <seojepar@student.42.fr>		  +#+  +:+	   +#+		*/
+/*												+#+#+#+#+#+   +#+		   */
+/*   Created: 2024/11/18 16:50:46 by seojepar		  #+#	#+#			 */
+/*   Updated: 2024/11/19 21:38:02 by seojepar		 ###   ########.fr	   */
+/*																			*/
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char *ft_strjoin(char const *a, char const *b)
+char	*ft_strjoin(char const *a, char const *b)
 {
-    char	*join;
+	char	*join;
 	size_t	alen;
 	size_t	blen;
 
