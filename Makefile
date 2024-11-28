@@ -27,7 +27,6 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 SRC_DIR = ./srcs
 LIB_DIR = libft
-MLX_DIR = mlx
 INC = ./includes/
 TAGS = -framework OpenGL -framework AppKit -fsanitize=address 
 
@@ -35,27 +34,24 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	make -C $(LIB_DIR)
-	make -C $(MLX_DIR)
 	echo $(DEPS)
-	$(CC) $^ -L$(LIB_DIR) -L$(MLX_DIR) -lft -lmlx -o $@ $(TAGS)
+	$(CC) $^ -L$(LIB_DIR) -lft -lmlx -o $@ $(TAGS)
 
 -include $(DEPS)
 
 %.o: %.c
-	$(CC) $(CFLAGS) -I$(MLX_DIR) -I$(INC) -c $< -o $@
+	$(CC) $(CFLAGS) -I$(INC) -c $< -o $@
 
 %.d: %.c
-	$(CC) -MMD -I$(MLX_DIR) -I$(INC) -c $< -MF $@
+	$(CC) -MMD  -I$(INC) -c $< -MF $@
 
 clean:
 	make clean -C $(LIB_DIR)
-	make clean -C $(MLX_DIR)
 	rm -f $(OBJS)
 	rm -f $(DEPS)
 
 fclean:
 	make fclean -C $(LIB_DIR)
-	make clean -C $(MLX_DIR)
 	make clean
 	rm -f $(NAME)
 

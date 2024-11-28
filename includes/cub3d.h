@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seojepar <seojepar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jeongbel <jeongbel@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 22:41:09 by seojeongpar       #+#    #+#             */
-/*   Updated: 2024/11/28 15:04:42 by seojepar         ###   ########.fr       */
+/*   Updated: 2024/11/28 15:45:57 by jeongbel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <sys/time.h>
-# include "mlx.h"
+# include <mlx.h>
 # include "line.h"
 # include "utils.h"
 # include "get_next_line.h"
