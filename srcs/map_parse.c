@@ -25,6 +25,9 @@ int	bfs(t_info *cub, int cx, int cy)
 		return (0);
 	else if (cmap == 0)
 		return (ERROR);
+	else if (cx == 0 || cx == cub->w - 1 || cy == 0 || \
+		cy == cub->h - 1)
+		return (ERROR);
 	else
 		cub->map[cy][cx] *= -1;
 	i = 0;
