@@ -62,7 +62,6 @@ int	key_dn(int key, t_info *cub)
 	next = add_v(cub->pos, walk);
 	if (cub->map[(int)next.y][(int)next.x] == WALL)
 		return (0);
-	printf("%f %f\n", next.x, next.y);
 	if (key == KEY_RIGHT)
 		cub->dir = rot_v(0.04, cub->dir);
 	else if (key == KEY_LEFT)
