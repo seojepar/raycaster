@@ -39,6 +39,8 @@ int	parse_map(t_info *cub, t_line *line)
 	}
 	if (!is_empty_after_map(line))
 		return (xerr("empty line in middle of map"));
+	if (line->pnum != 1)
+			return (xerr("no player in map"));
 	save_map_size(cub, line);
 	return (0);
 }
