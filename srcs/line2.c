@@ -6,7 +6,7 @@
 /*   By: seojepar <seojepar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 14:48:54 by seojepar          #+#    #+#             */
-/*   Updated: 2024/11/28 14:57:03 by seojepar         ###   ########.fr       */
+/*   Updated: 2024/11/28 16:08:57 by seojepar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ int	get_color(t_line *line, unsigned int *color)
 
 	total = 0;
 	it = line->it;
+	if (!*it)
+		return (1);
 	while (it && (*it == '+'))
 		it++;
 	while (*it && *it != ',')
