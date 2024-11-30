@@ -1,24 +1,22 @@
 NAME = cub3D
-SRC = 	get_next_line.c			\
-		error.c				\
-		gnl_info.c				\
-		is_id.c				\
-		line.c					\
-		line2.c				\
-		ft_add_to_buffer.c	\
-		ft_endswith.c			\
-		ft_trim.c				\
-		vector.c				\
-		color.c						\
-		events.c					\
-		main.c						\
-		map_parse.c					\
-		map_save.c					\
-		nonmap_parse.c				\
-		nonmap_save.c				\
-		parse.c						\
-		render.c					\
-		start.c						
+SRC =  color.c \
+		events.c \
+		is_id.c \
+		line_utiils.c \
+		main.c \
+		parse_map.c \
+		ray_cast.c \
+		save_texture.c \
+		vector.c \
+		error.c \
+		get_next_line.c \
+		line_gnl.c \
+		line_utils2.c \
+		parse.c \
+		parse_texture.c \
+		save_map.c \
+		start.c 
+					
 SRCS = $(addprefix $(SRC_DIR)/, $(SRC))
 OBJS = $(addprefix $(OBJ_DIR),$(SRC:.c=.o))
 DEPS = $(SRCS:.c=.d)

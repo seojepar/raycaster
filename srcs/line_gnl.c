@@ -41,13 +41,3 @@ char	*gnl(t_line *line, int is_map)
 		update_buffer(line);
 	return (line->in);
 }
-
-char	*gnl_info(t_line *line)
-{
-	line->id = -1;
-	if (line->in)
-		free(line->in);
-	line->in = get_next_line(line->fd);
-	line->it = line->in;
-	return (line->in);
-}

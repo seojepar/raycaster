@@ -34,5 +34,6 @@ int		ft_strcmp(const char *s1, const char *s2);
 int		ft_isspace(const char *s);
 int		ft_isblank(const char *s);
 int		ft_startswith(const char *haystack, const char *needle);
+int		ft_endswith(char *a, char *b);
 
 #endif

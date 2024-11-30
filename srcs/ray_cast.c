@@ -51,7 +51,7 @@ void	hit_ray(int **map, t_ray *r)
 		{
 			r->sidedisty += r->deltadisty;
 			r->mapy += r->stepy;
-			r->side = 2 * (r->stepy > 0);
+			r->side = 2 * (r->stepy < 0);
 		}
 		if (map[r->mapy][r->mapx] == WALL)
 			r->hit = 1;
